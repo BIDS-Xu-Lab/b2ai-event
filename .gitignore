@@ -1,0 +1,19 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# deploy
+.vercel/
+.netlify/
+
+# os / editor
+.DS_Store
+*.log
+npm-debug.log*
+
+# env
+.env
+.env.*

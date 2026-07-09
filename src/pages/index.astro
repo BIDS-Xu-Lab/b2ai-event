@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import VideoSection from '../components/VideoSection.astro';
+import PhotoGallery from '../components/PhotoGallery.tsx';
+import Testimonials from '../components/Testimonials.tsx';
+---
+
+<BaseLayout title="Bridge2AI Fall 2026 All-Hands Meeting & Open House">
+  <Hero />
+
+  <!-- Photos -->
+  <section class="section" id="photos">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <span class="section-eyebrow">Gallery</span>
+        <h2 class="section-title">2026 All-Hands Photographs</h2>
+        <p class="section-sub">Moments from the Bridge2AI community — presentations, posters, and the people behind the science.</p>
+      </header>
+      <div class="gallery-panel">
+        <PhotoGallery client:load />
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section section--alt" id="attendees">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <span class="section-eyebrow">Voices</span>
+        <h2 class="section-title">Hear from some of our past attendees!</h2>
+      </header>
+    </div>
+    <div class="container container--wide">
+      <Testimonials client:load />
+    </div>
+  </section>
+
+  <!-- Video -->
+  <VideoSection />
+</BaseLayout>
+
+<style>
+  .section-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: var(--space-6);
+    max-width: 720px;
+  }
+  .section--alt {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(70% 60% at 50% 0%, rgba(124, 60, 237, 0.05) 0%, transparent 60%),
+      #FAF9FE;
+    border-top: 1px solid var(--b2ai-border);
+    border-bottom: 1px solid var(--b2ai-border);
+  }
+  #photos .section-head { max-width: none; }
+  #photos .section-sub { max-width: none; }
+  .gallery-panel {
+    background: linear-gradient(135deg, #EEF0FB 0%, #F6EEFA 100%);
+    border: 1px solid var(--b2ai-border);
+    border-radius: 24px;
+    padding: 1.75rem;
+    box-shadow: 0 10px 30px rgba(46, 26, 77, 0.06);
+  }
+  /* Testimonials: compact + centered intro for the showcase */
+  #attendees.section { padding: var(--space-7) 0; }
+  #attendees .section-head {
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--space-4);
+  }
+  #attendees .section-sub { text-align: center; }
+  #attendees .container--wide { max-width: 900px; }
+  .container--wide { max-width: 1280px; }
+
+  @media (max-width: 560px) {
+    .gallery-panel { padding: 0.9rem; border-radius: 18px; }
+  }
+</style>

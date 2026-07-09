@@ -1,0 +1,20 @@
+---
+// Hero base layer: deep indigo→purple→plum gradient + soft glow blobs.
+// Darker/purple to match the Cvent hero duotone; also the reduced-motion /
+// no-WebGL fallback (PixelBlast renders transparent on top).
+---
+<div class="hero-bg" aria-hidden="true"></div>
+
+<style>
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background:
+      radial-gradient(130% 120% at 4% -14%, #4A34C8 0%, transparent 50%),
+      radial-gradient(125% 130% at 104% 114%, #A83A7E 0%, transparent 55%),
+      radial-gradient(80% 90% at 66% 82%, rgba(150, 70, 190, 0.4) 0%, transparent 55%),
+      linear-gradient(150deg, #2A1E8C 0%, #3B2185 28%, #4A2478 52%, #6E2A66 78%, #8E2E6E 100%);
+  }
+</style>

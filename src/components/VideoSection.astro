@@ -1,0 +1,147 @@
+---
+import Button from './Button.astro';
+const youtube = 'https://www.youtube.com/@Bridge2AI';
+---
+<section class="section video-section">
+  <div class="container video-inner">
+    <div class="video-copy" data-reveal>
+      <span class="section-eyebrow">On the record</span>
+      <h2 class="section-title">See the Science in Action</h2>
+      <p class="video-body">
+        Catch up on the technical breakthroughs, milestone announcements, and research
+        presentations that set the stage for this year's event. Watch the replays of our
+        previous conferences and discover how our teams are tackling the Grand Challenges
+        of biomedical AI.
+      </p>
+      <Button href={youtube} variant="gradient">Watch on YouTube</Button>
+    </div>
+
+    <a class="video-thumb" href={youtube} target="_blank" rel="noopener" aria-label="Watch Bridge2AI on YouTube" data-reveal>
+      <img src="/photos/allhands-3.jpg" alt="Bridge2AI conference session" loading="lazy" />
+      <span class="video-scrim" aria-hidden="true"></span>
+      <span class="video-glow" aria-hidden="true"></span>
+      <span class="video-play" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+      </span>
+      <span class="video-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z" /></svg>
+        Bridge2AI
+      </span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .video-section { position: relative; background: #fff; }
+  .video-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+  .video-copy { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+  .video-body {
+    font-size: var(--text-md);
+    line-height: 1.7;
+    color: var(--b2ai-text-soft);
+  }
+  .video-copy :global(.btn) { margin-top: 0.5rem; }
+
+  .video-thumb {
+    position: relative;
+    display: block;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: var(--b2ai-ink);
+    padding: 4px;
+    background-image: linear-gradient(135deg, #2A2AA8 0%, #6D3AB0 50%, #A8397E 100%);
+    box-shadow: 0 20px 50px rgba(74, 42, 140, 0.28);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .video-thumb img,
+  .video-thumb .video-scrim,
+  .video-thumb .video-glow { border-radius: 16px; }
+  .video-thumb:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 26px 60px rgba(74, 42, 140, 0.36);
+  }
+  .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .video-thumb:hover img { transform: scale(1.05); }
+  .video-scrim {
+    position: absolute;
+    inset: 4px;
+    background: linear-gradient(180deg, rgba(26,14,46,0.12) 0%, rgba(26,14,46,0.5) 100%);
+  }
+  .video-glow {
+    position: absolute;
+    inset: 4px;
+    opacity: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 180, 216, 0.25) 0%, transparent 65%);
+    transition: opacity 0.3s ease;
+  }
+  .video-thumb:hover .video-glow { opacity: 1; }
+  .video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00B4D8 0%, #4A48C4 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 130, 180, 0.55);
+    transition: transform 0.2s;
+    padding-left: 4px;
+  }
+  .video-play::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    animation: video-pulse 2.4s ease-out infinite;
+  }
+  @keyframes video-pulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    70% { transform: scale(1.25); opacity: 0; }
+    100% { opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .video-play::after { animation: none; }
+  }
+  .video-thumb:hover .video-play { transform: translate(-50%, -50%) scale(1.08); }
+  .video-badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 8px;
+    background: rgba(10, 8, 20, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+  .video-badge svg { color: #FF0000; }
+
+  @media (max-width: 760px) {
+    .video-inner { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
