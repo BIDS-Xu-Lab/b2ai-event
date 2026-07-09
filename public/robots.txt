@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://meeting.bridge2ai.org/sitemap-index.xml
