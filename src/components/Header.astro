@@ -1,40 +1,103 @@
 ---
-import Button from './Button.astro';
-const summary = 'https://web.cvent.com/event/3f4cbe6f-4006-4f79-a2ba-2c4fbf77bae3/summary';
-const register = 'https://web.cvent.com/event/3f4cbe6f-4006-4f79-a2ba-2c4fbf77bae3/register';
+const b = 'https://bridge2ai.org';
+const menu = [
+  { label: 'About', href: `${b}/about-page/` },
+  { label: 'People', href: `${b}/people-page/`, children: [
+    { label: 'Our People', href: `${b}/people-page/` },
+    { label: 'Grand Challenges', href: `${b}/grand-challenges-overview/` },
+    { label: 'Bridge Center', href: `${b}/bridge-center/` },
+  ] },
+  { label: 'Ethics', href: `${b}/elsi-blog/`, children: [
+    { label: 'ELSI Blog', href: `${b}/elsi-blog/` },
+    { label: 'Privacy-Enhancing Technologies', href: `${b}/privacy-enhancing-technologies-pets/` },
+  ] },
+  { label: 'Data', href: `${b}/data/`, children: [
+    { label: 'Datasets', href: `${b}/datasets/` },
+    { label: 'Data Tools', href: `${b}/data-tools/` },
+    { label: 'Standards & Best Practices', href: `${b}/data-standards-best-practices/` },
+  ] },
+  { label: 'Resources', href: `${b}/publications/`, children: [
+    { label: 'Publications', href: `${b}/publications/` },
+    { label: 'Education Videos', href: `${b}/education-videos/` },
+  ] },
+  { label: 'News & Events', href: `${b}/events/`, children: [
+    { label: 'Events', href: `${b}/events/` },
+    { label: 'Press Releases', href: `${b}/press-releases-announcements/` },
+  ] },
+];
+const caret = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
 ---
 <header class="site-nav" id="site-nav">
   <div class="container nav-inner">
-    <a class="nav-logo" href="https://bridge2ai.org" target="_blank" rel="noopener" aria-label="Bridge2AI home">
+    <a class="nav-logo" href="https://bridge2ai.org" aria-label="Bridge2AI home">
       <img src="/b2ai-logo.png" alt="Bridge2AI" width="150" height="60" />
     </a>
-    <nav class="nav-right" aria-label="Primary">
-      <a class="nav-link" href={summary} target="_blank" rel="noopener">Overview</a>
-      <Button href={register} variant="gradient" class="nav-register">Register</Button>
+
+    <nav class="nav-menu" aria-label="Bridge2AI">
+      {menu.map((item) => (
+        <div class={`nav-item ${item.children ? 'has-children' : ''}`}>
+          <a class="nav-top" href={item.href}>
+            {item.label}
+            {item.children && <span class="nav-caret" set:html={caret} />}
+          </a>
+          {item.children && (
+            <div class="nav-drop" role="menu">
+              {item.children.map((c) => (
+                <a class="nav-drop-link" role="menuitem" href={c.href}>{c.label}</a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
     </nav>
+
+    <div class="nav-actions">
+      <a class="nav-search" href="https://bridge2ai.org/" aria-label="Search bridge2ai.org">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </a>
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+        <span class="burger-lines" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav-mobile" id="nav-mobile">
+    {menu.map((item) => (
+      <div class="m-group">
+        <a class="m-top" href={item.href}>{item.label}</a>
+        {item.children && item.children.map((c) => (
+          <a class="m-sub" href={c.href}>{c.label}</a>
+        ))}
+      </div>
+    ))}
   </div>
 </header>
 
 <script>
   const nav = document.getElementById('site-nav');
+  const burger = document.getElementById('nav-burger');
   const onScroll = () => nav?.classList.toggle('is-scrolled', window.scrollY > 40);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+  burger?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('mobile-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
 </script>
 
 <style>
   .site-nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
     transition: background 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease;
     background: transparent;
     border-bottom: 1px solid transparent;
   }
-  .site-nav.is-scrolled {
-    background: rgba(11, 14, 61, 0.82);
+  .site-nav.is-scrolled,
+  .site-nav.mobile-open {
+    background: rgba(11, 14, 61, 0.92);
     backdrop-filter: saturate(160%) blur(14px);
     -webkit-backdrop-filter: saturate(160%) blur(14px);
     border-bottom-color: rgba(255, 255, 255, 0.12);
@@ -43,40 +106,115 @@ const register = 'https://web.cvent.com/event/3f4cbe6f-4006-4f79-a2ba-2c4fbf77ba
     height: 72px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    gap: 1.5rem;
   }
-  .nav-logo { display: inline-flex; align-items: center; }
-  .nav-logo img {
-    height: 50px;
-    width: auto;
-    filter: brightness(0) invert(1);
+  .nav-logo { display: inline-flex; align-items: center; flex-shrink: 0; }
+  .nav-logo img { height: 44px; width: auto; filter: brightness(0) invert(1); }
+
+  /* desktop menu */
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: auto;
   }
-  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-  .nav-link {
+  .nav-item { position: relative; }
+  .nav-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.55rem 0.85rem;
+    border-radius: 8px;
     color: #fff;
     font-weight: 600;
-    font-size: 1.0625rem;
-    transition: color 0.15s;
+    font-size: 1rem;
+    white-space: nowrap;
+    transition: color 0.15s, background 0.15s;
   }
-  .nav-link:hover { color: var(--b2ai-cyan); }
-  .site-nav :global(.nav-register svg) { display: none; }
-  .site-nav :global(.nav-register) {
-    background: var(--b2ai-cyan);
-    color: #04222b;
-    border: none;
-    box-shadow: 0 6px 18px rgba(0, 180, 216, 0.4);
+  .nav-top:hover { color: var(--b2ai-cyan); }
+  .nav-caret { display: inline-flex; opacity: 0.7; transition: transform 0.15s; }
+  .has-children:hover .nav-caret { transform: rotate(180deg); }
+  .nav-drop {
+    position: absolute;
+    top: calc(100% - 2px);
+    left: 0;
+    min-width: 230px;
+    padding: 0.4rem;
+    background: #fff;
+    border: 1px solid var(--b2ai-border);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(11, 14, 61, 0.22);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
   }
-  .site-nav :global(.nav-register:hover) {
-    background: #1AC4E6;
-    color: #04222b;
-    filter: none;
-    transform: translateY(-1px);
+  .has-children:hover .nav-drop,
+  .has-children:focus-within .nav-drop { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-drop-link {
+    display: block;
+    padding: 0.55rem 0.7rem;
+    border-radius: 8px;
+    color: var(--b2ai-ink);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    transition: background 0.12s, color 0.12s;
   }
+  .nav-drop-link:hover { background: var(--b2ai-blue-50); color: var(--b2ai-royal); }
 
+  .nav-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+  .nav-search {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px; border-radius: 50%;
+    color: #fff; border: 1px solid rgba(255,255,255,0.28);
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-search:hover { background: rgba(255,255,255,0.12); color: var(--b2ai-cyan); }
+
+  /* hamburger */
+  .nav-burger {
+    display: none;
+    width: 42px; height: 42px;
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 9px;
+    background: transparent;
+    cursor: pointer;
+    align-items: center; justify-content: center;
+  }
+  .burger-lines, .burger-lines::before, .burger-lines::after {
+    content: '';
+    display: block;
+    width: 20px; height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .burger-lines::before { transform: translateY(-6px); }
+  .burger-lines::after { transform: translateY(4px); }
+  .mobile-open .burger-lines { background: transparent; }
+  .mobile-open .burger-lines::before { transform: translateY(0) rotate(45deg); }
+  .mobile-open .burger-lines::after { transform: translateY(-2px) rotate(-45deg); }
+
+  /* mobile panel */
+  .nav-mobile {
+    display: none;
+    padding: 0.5rem 1.5rem 1.25rem;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+  }
+  .mobile-open .nav-mobile { display: block; }
+  .m-group { padding: 0.35rem 0; border-top: 1px solid rgba(255,255,255,0.1); }
+  .m-group:first-child { border-top: none; }
+  .m-top { display: block; color: #fff; font-weight: 700; font-size: 1.0625rem; padding: 0.5rem 0; }
+  .m-sub { display: block; color: #C7CEF0; font-size: var(--text-sm); font-weight: 500; padding: 0.35rem 0 0.35rem 0.9rem; }
+  .m-sub:hover, .m-top:hover { color: var(--b2ai-cyan); }
+
+  @media (max-width: 900px) {
+    .nav-menu, .nav-search { display: none; }
+    .nav-burger { display: inline-flex; }
+    .nav-actions { margin-left: auto; }
+  }
   @media (max-width: 430px) {
     .nav-logo img { height: 38px; }
-    .nav-right { gap: 0.85rem; }
-    .site-nav :global(.nav-register) { padding: 0.5rem 1rem; }
   }
 </style>
