@@ -2,21 +2,17 @@
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
-  <div class="container footer-top">
-    <div class="footer-left">
+  <div class="container footer-row">
+    <div class="footer-brand">
       <a class="footer-logo" href="https://bridge2ai.org" target="_blank" rel="noopener" aria-label="Bridge2AI home">
-        <img src="/b2ai-logo.png" alt="Bridge2AI" width="200" height="80" />
+        <img src="/b2ai-logo.png" alt="Bridge2AI" width="120" height="48" />
       </a>
-      <h2 class="footer-event">Bridge2AI Fall 2026 All-Hands Meeting &amp; Open House</h2>
-      <p class="footer-when">October 20–21, 2026 · Rockville, MD</p>
+      <div class="footer-meta">
+        <span class="footer-event">Bridge2AI Fall 2026 All-Hands Meeting &amp; Open House</span>
+        <span class="footer-when">October 20–21, 2026 · Rockville, MD</span>
+      </div>
     </div>
-    <div class="footer-right">
-      <a class="footer-cta" href="https://cvent.me/vB202g" target="_blank" rel="noopener">Register Now</a>
-    </div>
-  </div>
-
-  <div class="footer-base container">
-    <span>© {year} Bridge2AI Consortium · Funded by the NIH Common Fund</span>
+    <span class="footer-copy">© {year} Bridge2AI Consortium · Funded by the NIH Common Fund</span>
   </div>
 </footer>
 
@@ -24,7 +20,7 @@ const year = new Date().getFullYear();
   .site-footer {
     background: var(--b2ai-plum);
     color: #E4D8E6;
-    padding: 3rem 1.5rem 1.5rem;
+    padding: 1.5rem;
     position: relative;
   }
   .site-footer::before {
@@ -34,62 +30,39 @@ const year = new Date().getFullYear();
     left: 1.5rem;
     right: 1.5rem;
     height: 1px;
-    background: rgba(255, 255, 255, 0.25);
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 180, 216, 0.4) 50%, transparent 100%);
   }
-  .footer-top {
+  .footer-row {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: flex-start;
     gap: 2rem;
-    padding: 1.5rem 0 2.25rem;
   }
-  .footer-left { display: flex; flex-direction: column; gap: 0.85rem; flex: 1 1 auto; min-width: 0; max-width: 680px; }
-  .footer-right { flex: 0 0 auto; }
+  .footer-copy { flex-shrink: 0; }
+  .footer-brand { display: flex; align-items: center; gap: 0.9rem; }
+  .footer-logo { display: inline-flex; align-items: center; }
   .footer-logo img {
-    height: 60px;
+    height: 40px;
     width: auto;
     filter: brightness(0) invert(1);
   }
+  .footer-meta { display: flex; flex-direction: column; gap: 2px; }
   .footer-event {
     font-family: var(--font-sans);
-    font-size: var(--text-2xl);
+    font-size: var(--text-lg);
     font-weight: 700;
     color: #fff;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
   }
-  .footer-when { font-size: var(--text-lg); color: #EBE0EC; margin: 0; }
-  .footer-right { display: flex; align-items: flex-start; padding-top: 0.75rem; }
-  .footer-cta {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.75rem 1.75rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(12px) saturate(140%);
-    -webkit-backdrop-filter: blur(12px) saturate(140%);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: #fff;
-    font-size: var(--text-base);
-    font-weight: 600;
-    transition: background 0.15s, transform 0.15s, border-color 0.15s;
-  }
-  .footer-cta:hover {
-    background: rgba(255, 255, 255, 0.26);
-    border-color: rgba(255, 255, 255, 0.65);
-    color: #fff;
-    transform: translateY(-1px);
-  }
-  .footer-base {
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    font-size: 0.9375rem;
+  .footer-when { font-size: var(--text-sm); color: #C9BCD6; }
+  .footer-copy {
+    font-size: var(--text-sm);
     color: #C7B4C9;
+    text-align: right;
   }
   @media (max-width: 640px) {
-    .footer-top { flex-direction: column; }
-    .footer-left { max-width: none; }
-    .footer-logo img { height: 48px; }
+    .footer-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .footer-copy { text-align: left; }
   }
 </style>

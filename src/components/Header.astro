@@ -1,0 +1,82 @@
+---
+import Button from './Button.astro';
+const summary = 'https://web.cvent.com/event/3f4cbe6f-4006-4f79-a2ba-2c4fbf77bae3/summary';
+const register = 'https://web.cvent.com/event/3f4cbe6f-4006-4f79-a2ba-2c4fbf77bae3/register';
+---
+<header class="site-nav" id="site-nav">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="https://bridge2ai.org" target="_blank" rel="noopener" aria-label="Bridge2AI home">
+      <img src="/b2ai-logo.png" alt="Bridge2AI" width="150" height="60" />
+    </a>
+    <nav class="nav-right" aria-label="Primary">
+      <a class="nav-link" href={summary} target="_blank" rel="noopener">Overview</a>
+      <Button href={register} variant="gradient" class="nav-register">Register</Button>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById('site-nav');
+  const onScroll = () => nav?.classList.toggle('is-scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+<style>
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: background 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+  }
+  .site-nav.is-scrolled {
+    background: rgba(11, 14, 61, 0.82);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+  .nav-inner {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .nav-logo { display: inline-flex; align-items: center; }
+  .nav-logo img {
+    height: 50px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-link {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.0625rem;
+    transition: color 0.15s;
+  }
+  .nav-link:hover { color: var(--b2ai-cyan); }
+  .site-nav :global(.nav-register svg) { display: none; }
+  .site-nav :global(.nav-register) {
+    background: var(--b2ai-cyan);
+    color: #04222b;
+    border: none;
+    box-shadow: 0 6px 18px rgba(0, 180, 216, 0.4);
+  }
+  .site-nav :global(.nav-register:hover) {
+    background: #1AC4E6;
+    color: #04222b;
+    filter: none;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 430px) {
+    .nav-logo img { height: 38px; }
+    .nav-right { gap: 0.85rem; }
+    .site-nav :global(.nav-register) { padding: 0.5rem 1rem; }
+  }
+</style>
