@@ -37,6 +37,7 @@ import PixelBlast from './PixelBlast.jsx';
     </p>
     <div class="hero-cta" data-reveal>
       <Button href="https://web.cvent.com/event/3f4cbe6f-4006-4f79-a2ba-2c4fbf77bae3/summary" variant="cyan">Visit the Event Site</Button>
+      <Button href="https://canva.link/bridge2ai-digital-agenda" variant="lavender">View Digital Program</Button>
     </div>
   </div>
 
@@ -160,7 +161,12 @@ import PixelBlast from './PixelBlast.jsx';
   }
   .hero-date { color: #fff; font-weight: 600; }
   .hero-sep { color: rgba(255, 255, 255, 0.3); }
-  .hero-cta { margin-top: var(--space-3); }
+  .hero-cta {
+    margin-top: var(--space-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
   .hero-cta :global(svg) { display: none; }
 
   @media (max-width: 560px) {
