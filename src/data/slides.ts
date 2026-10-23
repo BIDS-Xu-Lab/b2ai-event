@@ -58,7 +58,7 @@ export const agenda: AgendaSession[] = [
     title: 'Cross-Cutting Themes',
     talks: [
       { title: 'Ethical, Legal and Social Implications', speakers: 'Brad Malin', driveId: '1jXDgTgIhNbOTTZoNku5gmanZCtoLFqsl' },
-      { title: 'Data Indexing and Blockchain', speakers: 'Lucila Ohno-Machado, Hua Xu & Tsung-Ting Kuo', driveId: '1pIQuzlMRYyAeQv2f3xG4OnzpSQEgF_xH' },
+      { title: 'Data Indexing and Blockchain', speakers: 'Lucila Ohno-Machado, Hua Xu & Tsung-Ting Kuo', driveId: '1df0xfETdlcYRm_6gAVEK_YCkuUTD_5zE' },
       { title: 'Phenopacketizing Bridge2AI', speakers: 'Justin Reese', driveId: '1UUWLbR7kmObOQ81Jvasr3Nf6VDho_0sK' },
       { title: 'Bridge2AI Talent Knowledge Graph', speakers: 'Jake Chen', driveId: '16GTkkphbDsGoRCwdluJ-61h0fK17ag1p' },
       { title: 'Training, Recruitment and Mentoring', speakers: 'Jack Rincon', driveId: '1IT07c8FNzBshyDBRbiH4fpRBjnszylak' },
