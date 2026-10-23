@@ -30,7 +30,7 @@ export const agenda: AgendaSession[] = [
     talks: [
       { title: 'Salutogenesis', speakers: 'Bhavesh Patel', driveId: '19SGuk6UBezb9UnTvEOv7jO6h4mWjGO78' },
       { title: 'Functional Genomics', speakers: 'Trey Ideker', driveId: '17oVvrQWfsFXAbjHTrV63a57CjtWmVnLq' },
-      { title: 'AI/ML for Clinical Care', speakers: 'Eric Rosenthal' },
+      { title: 'AI/ML for Clinical Care', speakers: 'Eric Rosenthal', driveId: '1iRmCXcfgHLJs99plRdnxUeX3oU1QUq3W' },
       { title: 'Precision Medicine (Voice)', speakers: 'Yael Bensoussan', driveId: '1yQ9GFc4t41uevEhOXlactW97wn_y0Gv3' },
       { title: 'Open House, Training, Recruitment & Mentoring', speakers: 'Alex Bui', driveId: '1vAcsI_P-ZDBVV52MYs13aCjBzu4Vz8Bm' },
       { title: 'Standards & Teaming', speakers: 'Monica Munoz-Torres', driveId: '1V117j9lveExhGlwqm32O8L7Po67JveM_' },
