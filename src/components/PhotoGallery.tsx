@@ -62,7 +62,6 @@ export default function PhotoGallery() {
             <span className="pg-expand" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg>
             </span>
-            <span className="pg-caption">{p.alt}</span>
           </button>
         ))}
       </div>
@@ -121,28 +120,6 @@ export default function PhotoGallery() {
           transition: transform 0.4s ease;
         }
         .pg-thumb:hover img { transform: scale(1.06); }
-        .pg-caption {
-          position: absolute;
-          inset: auto 0 0 0;
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          padding: 2.25rem 1rem 0.85rem;
-          background: linear-gradient(180deg, transparent 0%, rgba(10, 8, 20, 0.45) 45%, rgba(10, 8, 20, 0.85) 100%);
-          color: #fff;
-          font-size: var(--text-sm);
-          font-weight: 600;
-          line-height: 1.35;
-          text-align: left;
-          opacity: 0;
-          transform: translateY(6px);
-          transition: opacity 0.25s ease, transform 0.25s ease;
-        }
-        .pg-thumb:hover .pg-caption,
-        .pg-thumb:focus-visible .pg-caption {
-          opacity: 1;
-          transform: translateY(0);
-        }
         .pg-expand {
           position: absolute;
           top: 0.7rem;
