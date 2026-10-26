@@ -1,11 +1,22 @@
 import { useCallback, useEffect, useState } from 'react';
 
 const photos = [
-  { src: '/photos/allhands-1.jpg', alt: 'Bridge2AI All-Hands attendees gathered at the meeting' },
-  { src: '/photos/allhands-2.jpg', alt: 'Bridge2AI consortium members networking' },
-  { src: '/photos/allhands-3.jpg', alt: 'Bridge2AI All-Hands session in progress' },
-  { src: '/photos/allhands-4.jpg', alt: 'Bridge2AI attendees during a conference session' },
-  { src: '/photos/allhands-5.jpg', alt: 'Bridge2AI team members at the All-Hands Meeting' },
+  { src: '/photos/allhands-1.jpg', alt: 'Two attendees smiling together at the meeting' },
+  { src: '/photos/allhands-2.jpg', alt: 'Speaker presenting at the podium' },
+  { src: '/photos/allhands-3.jpg', alt: 'Attendees filling the ballroom during a session' },
+  { src: '/photos/allhands-4.jpg', alt: 'Attendee presenting a poster to a small group in the hallway' },
+  { src: '/photos/allhands-5.jpg', alt: 'Bridge2AI co-chairs welcoming attendees beside the opening slide' },
+  { src: '/photos/allhands-6.jpg', alt: 'Speaker presenting at the podium during a session' },
+  { src: '/photos/allhands-7.jpg', alt: 'Attendees watching a presentation on screen' },
+  { src: '/photos/allhands-8.jpg', alt: 'Attendees at laptops during a workshop session' },
+  { src: '/photos/allhands-9.jpg', alt: 'Panelists seated at a long table' },
+  { src: '/photos/allhands-10.jpg', alt: 'Attendees gathered around a laptop for a hands-on demo' },
+  { src: '/photos/allhands-11.jpg', alt: 'Moderator introducing a panel from the podium' },
+  { src: '/photos/allhands-12.jpg', alt: 'Presenter explaining a poster to attendees' },
+  { src: '/photos/allhands-13.jpg', alt: 'Consortium members posing together after a session' },
+  { src: '/photos/allhands-14.jpg', alt: 'Participants seated around tables in a breakout session' },
+  { src: '/photos/allhands-15.jpg', alt: 'Attendees at laptops talking in a busy room' },
+  { src: '/photos/allhands-16.jpg', alt: 'Speaker addressing the room beside a seated panel' },
 ];
 
 export default function PhotoGallery() {
@@ -83,8 +94,7 @@ export default function PhotoGallery() {
       <style>{`
         .pg-grid {
           display: grid;
-          grid-template-columns: repeat(6, 1fr);
-          grid-auto-rows: 200px;
+          grid-template-columns: repeat(4, 1fr);
           gap: 1.15rem;
         }
         .pg-thumb {
@@ -94,6 +104,7 @@ export default function PhotoGallery() {
           margin: 0;
           cursor: pointer;
           overflow: hidden;
+          aspect-ratio: 5 / 4;
           border-radius: 18px;
           background: var(--b2ai-border);
           box-shadow: 0 8px 22px rgba(46, 26, 77, 0.10);
@@ -156,13 +167,6 @@ export default function PhotoGallery() {
           opacity: 1;
           transform: scale(1);
         }
-        /* balanced 3-then-2 layout, all equal height */
-        .pg-thumb--0 { grid-column: span 2; }
-        .pg-thumb--1 { grid-column: span 2; }
-        .pg-thumb--2 { grid-column: span 2; }
-        .pg-thumb--3 { grid-column: span 3; }
-        .pg-thumb--4 { grid-column: span 3; }
-
         .pg-lightbox {
           position: fixed;
           inset: 0;
@@ -230,10 +234,11 @@ export default function PhotoGallery() {
         .pg-nav--prev { position: absolute; left: 1rem; }
         .pg-nav--next { position: absolute; right: 1rem; }
 
-        @media (max-width: 760px) {
-          .pg-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 0.75rem; }
-          .pg-thumb--0 { grid-column: span 2; grid-row: span 2; }
-          .pg-thumb--1, .pg-thumb--2, .pg-thumb--3, .pg-thumb--4 { grid-column: span 1; }
+        @media (max-width: 960px) {
+          .pg-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 560px) {
+          .pg-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
         }
       `}</style>
     </div>
